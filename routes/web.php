@@ -28,3 +28,6 @@ Route::get('/questionnaires/{questionnaire}', 'QuestionnaireController@show');  
 Route::get('/questionnaires/{questionnaire}/questions/create', 'QuestionController@create');    // Formulaire pour ajouter une question au formulaire
 Route::post('/questionnaires/{questionnaire}/questions', 'QuestionController@store');           // Ajoute une question dans la DB
 Route::delete('/questionnaires/{questionnaire}/questions/{question}', 'QuestionController@destroy'); // Supprime une question
+
+Route::get('/surveys/{questionnaire}-{slug}', 'SurveyController@show');
+Route::post('/surveys/{questionnaire}-{slug}', 'SurveyController@store');

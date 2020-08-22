@@ -12,8 +12,13 @@ class Questionnaire extends Model
         return $this->belongsTo(User::class);
    }
 
-   // Quel est le type de relation entre une question et un questionnaire
+   // Un questionnaire contient plusieurs questions
    public function questions() {
         return $this->hasMany(Question::class);
+   }
+
+   // Un questionnaire conteint plusieurs sondages
+   public function surveys() {
+     return $this->hasMany(Survey::class);
    }
 }
