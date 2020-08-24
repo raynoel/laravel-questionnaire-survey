@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Questionnaire extends Model
 {
@@ -21,4 +22,10 @@ class Questionnaire extends Model
    public function surveys() {
      return $this->hasMany(Survey::class);
    }
+
+
+   public function publicPath() {
+     return url('/surveys/'.$this->id.'-'. Str::slug($this->title));                 // Retourne le URL pour participer au sondage
+   }
+
 }

@@ -36,6 +36,6 @@ class QuestionnaireController extends Controller
     public function show(Questionnaire $questionnaire) {
         $questionnaire->load('questions.answers');                    // Lazyload questions & answers
         // dd($questionnaire);                                           // relations: array ... affiche les rangées relationelles
-        return view('questionnaire.show', compact('questionnaire'));
+        return view('questionnaire.show', compact('questionnaire')); 
     }
 }

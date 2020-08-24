@@ -2,22 +2,42 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
+      <div class="card">
+        <div class="card-header">Dashboard</div>
+        <div class="card-body">
+          @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              {{ session('status') }}
             </div>
+          @endif
+          <a href="/questionnaires/create" class="btn btn-dark">Créer un nouveau questionnaire</a>
         </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-header">Mes Questionnaires</div>
+        <div class="card-body">
+          <ul class="list-group">
+            
+            @foreach($questionnaires as $questionnaire)
+              <li class="list-group-item"> 
+                <!-- Affiche le URL pour éditer le questionnaire -->
+                <small class="font-weight-bold">URL pour éditer le questionnaire</small><br>
+                <a href="/questionnaires/{{ $questionnaire->id }}">{{ $questionnaire->title }}</a>
+                <hr>
+                <!-- Affiche le URL pour participer que questionnaire -->
+                <small class="font-weight-bold">URL pour participer au questionnaire</small><br>
+                <a href="{{ $questionnaire->publicPath() }}">{{ $questionnaire->publicPath() }}</a>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 @endsection

@@ -6,23 +6,14 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
+
+    public function __construct() {
+        $this->middleware('auth');                                      // Besoin de login pour afficher la page
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
+    /** /home/ affiche la liste des questionnaires appartenant à l'usagé */
+    public function index() {
+        $questionnaires = auth()->user()->questionnaires;               // Obtient les questionnaires appartenant à l'usagé logé
+        return view('home', compact('questionnaires'));                 // home.blade.php
     }
 }
